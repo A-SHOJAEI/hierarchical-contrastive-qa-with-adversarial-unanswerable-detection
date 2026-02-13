@@ -1,0 +1,67 @@
+# Ablation study: Baseline without contrastive and adversarial components
+model:
+  name: "bert-base-uncased"
+  hidden_size: 768
+  num_hierarchical_levels: 3
+  contrastive_temperature: 0.07
+  contrastive_margin: 0.5
+  dropout: 0.1
+  use_contrastive: false  # Disabled for ablation
+  use_adversarial: false  # Disabled for ablation
+
+training:
+  num_epochs: 10
+  batch_size: 16
+  gradient_accumulation_steps: 2
+  learning_rate: 0.00003
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  max_grad_norm: 1.0
+  mixed_precision: true
+
+  # Learning rate scheduler
+  scheduler_type: "cosine"
+
+  # Early stopping
+  early_stopping_patience: 3
+  early_stopping_metric: "f1_overall"
+
+  # Adversarial training (disabled)
+  adversarial_start_epoch: 999
+  adversarial_epsilon: 0.0
+  adversarial_num_samples: 0
+
+data:
+  dataset_name: "squad_v2"
+  max_seq_length: 384
+  doc_stride: 128
+  max_query_length: 64
+  max_answer_length: 30
+  num_workers: 4
+  cache_dir: "./data/cache"
+  validation_split: 0.1
+
+optimization:
+  optimizer: "adamw"
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_epsilon: 0.00000001
+
+loss_weights:
+  span_loss: 1.0
+  answerability_loss: 1.5
+  contrastive_loss: 0.0  # Disabled for ablation
+  adversarial_loss: 0.0  # Disabled for ablation
+
+evaluation:
+  eval_steps: 500
+  save_steps: 500
+  logging_steps: 100
+  n_best_size: 20
+  max_answer_length: 30
+  null_score_diff_threshold: 0.0
+
+seed: 42
+output_dir: "./models"
+results_dir: "./results"
+log_dir: "./logs"

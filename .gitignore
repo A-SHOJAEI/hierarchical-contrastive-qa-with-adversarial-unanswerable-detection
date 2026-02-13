@@ -1,0 +1,105 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Model checkpoints and data
+models/*.pt
+models/*.pth
+checkpoints/*.pt
+checkpoints/*.pth
+data/cache/
+data/raw/
+data/processed/
+*.hdf5
+*.h5
+
+# Results and logs
+results/*.json
+results/*.csv
+results/*.png
+results/*.pdf
+logs/
+mlruns/
+wandb/
+tensorboard_logs/
+
+# Environment
+.env
+.env.local
+
+# Temporary files
+*.log
+*.tmp
+temp/
+tmp/
+
+
+# Auto-added by publisher
+# Training artifacts (auto-added by publisher)
+checkpoints/
+*.pt
+*.pth
+*.pkl
+*.onnx
+*.bin
+*.safetensors
+mlflow.db
+data/*.arrow
+data/*.parquet
+data/*.h5
+data/*.hdf5
+outputs/
+.venv/
+Thumbs.db
