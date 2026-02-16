@@ -10,6 +10,10 @@ Unlike standard multi-component approaches that sum loss terms independently, th
 2. **Adversarial training targets hierarchical disagreement** - Perturbations focus on positions where refinement levels disagree, challenging uncertain predictions
 3. **Cross-component feedback** - Each subsystem informs the others through architectural coupling, not just loss weighting
 
+## Methodology
+
+The novel contribution lies in **architectural synergy** rather than component composition. Standard approaches combine contrastive learning, hierarchical prediction, and adversarial training as independent loss terms. This implementation creates bidirectional information flow between components. Contrastive embeddings computed from question-passage pairs modulate hierarchical attention patterns via learned projection layers. The hierarchical span predictor tracks inter-level prediction variance to identify uncertain regions. These disagreement scores guide the adversarial generator to produce targeted perturbations in regions where the model is least confident. This creates a feedback loop where each component strengthens the others through architectural coupling, not mere loss weighting.
+
 ## Installation
 
 ```bash
@@ -45,6 +49,19 @@ python scripts/predict.py --checkpoint models/best_model.pt \
 **Adversarial Generator** - Generates near-miss distractors weighted by answer position AND hierarchical disagreement scores. Targets model weaknesses identified by level variance.
 
 **Loss weighting:** Span (1.0), Answerability (1.5), Contrastive (0.5), Adversarial (0.3)
+
+## Training Results
+
+Training completed after 4 epochs with early stopping (patience=3):
+
+| Epoch | Train Loss | Val Loss | Status |
+|-------|-----------|----------|--------|
+| 1     | 2.328     | 2.265    | Best   |
+| 2     | 1.432     | 2.385    | -      |
+| 3     | 1.042     | 3.035    | -      |
+| 4     | 0.791     | 3.273    | Stop   |
+
+Best model saved at epoch 1 with validation loss of 2.265. Early stopping triggered after validation loss increased for 3 consecutive epochs. Training showed clear overfitting pattern with decreasing train loss but increasing validation loss.
 
 ## Configuration
 

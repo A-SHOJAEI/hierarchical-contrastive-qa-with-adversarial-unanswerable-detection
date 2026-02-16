@@ -170,7 +170,8 @@ class HierarchicalSpanPredictor(nn.Module):
             return None
 
         # Threshold at top 20% disagreement
-        threshold = torch.quantile(self.level_disagreement_scores, 0.8)
+        # Ensure float dtype for quantile computation
+        threshold = torch.quantile(self.level_disagreement_scores.float(), 0.8)
         return (self.level_disagreement_scores > threshold).float()
 
 

@@ -103,3 +103,4 @@ data/*.hdf5
 outputs/
 .venv/
 Thumbs.db
+*.pyc
