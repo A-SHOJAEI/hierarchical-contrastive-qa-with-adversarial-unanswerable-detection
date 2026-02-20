@@ -66,10 +66,10 @@ data/processed/
 *.h5
 
 # Results and logs
-results/*.json
 results/*.csv
 results/*.png
 results/*.pdf
+!results/results.json
 logs/
 mlruns/
 wandb/

@@ -50,6 +50,9 @@ hcqa-train = "hierarchical_contrastive_qa_with_adversarial_unanswerable_detectio
 hcqa-evaluate = "hierarchical_contrastive_qa_with_adversarial_unanswerable_detection.cli.evaluate:main"
 hcqa-predict = "hierarchical_contrastive_qa_with_adversarial_unanswerable_detection.cli.predict:main"
 
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]

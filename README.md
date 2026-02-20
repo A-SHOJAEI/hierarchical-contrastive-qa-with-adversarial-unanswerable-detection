@@ -52,16 +52,27 @@ python scripts/predict.py --checkpoint models/best_model.pt \
 
 ## Training Results
 
-Training completed after 4 epochs with early stopping (patience=3):
+Training completed after 4 epochs with early stopping (patience=3). Best model saved at epoch 1 with validation loss 2.2489.
+
+### Overall Loss
 
 | Epoch | Train Loss | Val Loss | Status |
 |-------|-----------|----------|--------|
-| 1     | 2.328     | 2.265    | Best   |
-| 2     | 1.432     | 2.385    | -      |
-| 3     | 1.042     | 3.035    | -      |
-| 4     | 0.791     | 3.273    | Stop   |
+| 1     | 2.333     | 2.249    | Best   |
+| 2     | 1.430     | 2.455    | -      |
+| 3     | 1.040     | 2.912    | -      |
+| 4     | 0.792     | 3.557    | Stop   |
 
-Best model saved at epoch 1 with validation loss of 2.265. Early stopping triggered after validation loss increased for 3 consecutive epochs. Training showed clear overfitting pattern with decreasing train loss but increasing validation loss.
+### Component Losses (Training)
+
+| Epoch | Span Loss | Contrastive Loss | Answerability Loss |
+|-------|-----------|------------------|--------------------|
+| 1     | 1.429     | 0.496            | 0.437              |
+| 2     | 0.894     | 0.299            | 0.258              |
+| 3     | 0.688     | 0.196            | 0.169              |
+| 4     | 0.555     | 0.131            | 0.114              |
+
+Early stopping triggered after validation loss increased for 3 consecutive epochs. The model exhibited overfitting: training loss decreased steadily from 2.333 to 0.792 while validation loss increased from 2.249 to 3.557 after epoch 1. All three component losses (span extraction, contrastive, answerability) converged well during training, indicating effective multi-task optimization despite generalization challenges.
 
 ## Configuration
 

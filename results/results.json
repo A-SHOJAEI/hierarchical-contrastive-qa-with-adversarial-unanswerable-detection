@@ -1,0 +1,57 @@
+{
+  "experiment": "hierarchical-contrastive-qa-with-adversarial-unanswerable-detection",
+  "dataset": "SQuAD 2.0",
+  "model": "DeBERTa-based QA with contrastive learning and answerability detection",
+  "training": {
+    "total_epochs_run": 4,
+    "max_epochs": 10,
+    "early_stopping_patience": 3,
+    "best_epoch": 1,
+    "best_val_loss": 2.2489,
+    "batch_size": 16,
+    "gradient_accumulation_steps": 2,
+    "learning_rate": 3e-05,
+    "training_examples": 130319,
+    "validation_examples": 11873,
+    "per_epoch": [
+      {
+        "epoch": 1,
+        "train_loss": 2.3328,
+        "val_loss": 2.2489,
+        "span_loss": 1.4295,
+        "contrastive_loss": 0.4958,
+        "answerability_loss": 0.437
+      },
+      {
+        "epoch": 2,
+        "train_loss": 1.4305,
+        "val_loss": 2.4553,
+        "span_loss": 0.8938,
+        "contrastive_loss": 0.2992,
+        "answerability_loss": 0.258
+      },
+      {
+        "epoch": 3,
+        "train_loss": 1.0399,
+        "val_loss": 2.9117,
+        "span_loss": 0.6885,
+        "contrastive_loss": 0.196,
+        "answerability_loss": 0.169
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.7919,
+        "val_loss": 3.5574,
+        "span_loss": 0.5551,
+        "contrastive_loss": 0.1311,
+        "answerability_loss": 0.1141
+      }
+    ]
+  },
+  "best_model": {
+    "path": "models/best_model.pt",
+    "val_loss": 2.2489,
+    "epoch": 1
+  },
+  "notes": "Early stopping at epoch 4. Model overfit after epoch 1 with validation loss increasing from 2.249 to 3.557 while training loss decreased from 2.333 to 0.792."
+}
